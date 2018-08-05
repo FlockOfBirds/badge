@@ -19,7 +19,7 @@ module.exports = function(config) {
                     enforce: "post",
                     loader: "istanbul-instrumenter-loader",
                     include: path.resolve(__dirname, "src"),
-                    exclude: /\.(spec)\.ts$/
+                    exclude: /\.(spec)\.tsx$/
                 } ])
             })
         });
@@ -29,7 +29,7 @@ module.exports = function(config) {
         basePath: "",
         frameworks: [ "jasmine" ],
         files: [
-            { pattern: "src/**/*.ts", watched: true },
+            { pattern: "src/**/*.tsx", watched: true },
             { pattern: "tests/**/*.ts", watched: true },
             "tests/test-index.js"
         ],

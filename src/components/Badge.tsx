@@ -1,8 +1,7 @@
-import { SFC } from "react";
+import * as React from "react";
 import * as classNames from "classnames";
 
 import "../ui/Badge.css";
-import React = require("react");
 
 export interface BadgeProps {
     badgeType: "badge" | "label";
@@ -18,7 +17,7 @@ export interface BadgeProps {
 
 export type BootstrapStyle = "default" | "info" | "inverse" | "primary" | "danger" | "success" | "warning";
 
-export const Badge: SFC<BadgeProps> = (props) =>
+export const Badge: React.SFC<BadgeProps> = (props) =>
     <span
         className={ classNames("widget-badge", props.badgeType, props.className,
             {
