@@ -1,7 +1,7 @@
-import { Component, createElement } from "react";
 import { Badge, BadgeProps } from "./components/Badge";
 import { Alert } from "./components/Alert";
 import BadgeContainer, { BadgeContainerProps } from "./components/BadgeContainer";
+import * as React from "react";
 
 declare function require(name: string): string;
 
@@ -10,12 +10,15 @@ type VisibilityMap = {
 };
 
 // tslint:disable-next-line class-name
-export class preview extends Component<BadgeContainerProps, {}> {
+export class preview extends React.Component<BadgeContainerProps, {}> {
     render() {
         const message = BadgeContainer.validateProps(this.props);
-        return createElement("div", { ref: this.parentInline },
-            createElement(Alert, { bootstrapStyle: "danger", message, className: "widget-badge-alert" }),
-            createElement(Badge, this.transformProps(this.props))
+
+        return (
+            <div ref={ this.parentInline }>
+                <Alert bootstrapStyle="danger" className="widget-badge-alert" message={ message } />,
+                <Badge { ...this.transformProps(this.props) } />
+            </div>
         );
     }
 

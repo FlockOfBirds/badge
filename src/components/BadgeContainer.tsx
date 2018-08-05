@@ -1,7 +1,6 @@
-import { Component, createElement } from "react";
-
 import { Badge, BootstrapStyle } from "./Badge";
 import { Alert } from "./Alert";
+import * as React from "react";
 
 interface WrapperProps {
     "class"?: string;
@@ -35,7 +34,7 @@ interface Nanoflow {
 type OnClickOptions = "doNothing" | "showPage" | "callMicroflow" | "callNanoflow";
 type PageLocation = "content"| "popup" | "modal";
 
-export default class BadgeContainer extends Component<BadgeContainerProps, BadgeContainerState> {
+export default class BadgeContainer extends React.Component<BadgeContainerProps, BadgeContainerState> {
     private subscriptionHandles: number[];
 
     constructor(props: BadgeContainerProps) {
@@ -52,23 +51,20 @@ export default class BadgeContainer extends Component<BadgeContainerProps, Badge
 
     render() {
         if (this.state.alertMessage) {
-            return createElement(Alert, {
-                bootstrapStyle: "danger",
-                className: "widget-badge-alert",
-                message: this.state.alertMessage
-            });
+            return <Alert bootstrapStyle="danger"
+            className="widget-badge-alert"
+            message={ this.state.alertMessage } />;
         }
 
-        return createElement(Badge, {
-            badgeType: this.props.badgeType,
-            bootstrapStyle: this.props.bootstrapStyle,
-            className: this.props.class,
-            clickable: this.props.onClickEvent !== "doNothing",
-            defaultValue: this.props.badgeValue,
-            onClickAction: this.handleOnClick,
-            style: BadgeContainer.parseStyle(this.props.style),
-            value: this.state.value
-        });
+        return <Badge badgeType={ this.props.badgeType }
+            bootstrapStyle={ this.props.bootstrapStyle }
+            className={ this.props.class }
+            clickable={ this.props.onClickEvent !== "doNothing" }
+            defaultValue={ this.props.badgeValue }
+            onClickAction={ this.handleOnClick }
+            style={ BadgeContainer.parseStyle(this.props.style) }
+            value={ this.state.value }
+        />;
     }
 
     componentWillReceiveProps(newProps: BadgeContainerProps) {
