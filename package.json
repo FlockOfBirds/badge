@@ -6,6 +6,7 @@
   "copyright": "Mendix BV",
   "scripts": {
     "start": "nodemon --watch webpack.config.js --watch Gruntfile.js --exec \"grunt",
+    "start:dev": "webpack-dev-server --open",
     "emit": "tsc",
     "pretest": "tsc && npm run lint && npm run build",
     "test": "npm run test:unit && npm run test:conditional",
@@ -85,6 +86,7 @@
     "raw-loader": "^0.5.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-hot-loader": "^4.3.5",
     "react-test-renderer": "^16.3.2",
     "remap-istanbul": "^0.11.1",
     "sass-loader": "^7.0.3",
