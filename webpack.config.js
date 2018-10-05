@@ -2,7 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
 const package = require("./package");
 const widgetName = package.widgetName;
 const name = package.widgetName.toLowerCase();
@@ -29,6 +28,7 @@ const widgetConfig = {
             }) }
         ]
     },
+    mode: "development",
     devtool: "source-map",
     externals: [ "react", "react-dom" ],
     plugins: [
@@ -63,11 +63,10 @@ const previewConfig = {
             }
         ]
     },
+    mode: "development",
     devtool: "inline-source-map",
     externals: [ "react", "react-dom" ],
-    plugins: [
-        new webpack.LoaderOptionsPlugin({ debug: true })
-    ]
+    plugins: [ new webpack.LoaderOptionsPlugin({ debug: true }) ]
 };
 
 module.exports = [ widgetConfig, previewConfig ];

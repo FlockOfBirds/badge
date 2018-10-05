@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="com.mendix.widget.custom.badge.Badge" needsEntityContext="true" offlineCapable="true" xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../xsd/widget.xsd">
+<widget id="com.mendix.widget.custom.badge.Badge" needsEntityContext="true" offlineCapable="true" pluginWidget="true" xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../xsd/widget.xsd">
     <name>Badge</name>
     <description>Shows a value as a badge or a color label</description>
     <icon>
@@ -41,52 +41,19 @@
                 <enumerationValue key="danger">Danger</enumerationValue>
             </enumerationValues>
         </property>
-        <property key="badgeType" type="enumeration" required="true" defaultValue="badge">  
+        <property key="badgeType" type="enumeration" required="true" defaultValue="badge">
             <caption>Type</caption>
             <category>Display</category>
             <description>Render it as either a badge or a color label</description>
             <enumerationValues>
                 <enumerationValue key="badge">Badge</enumerationValue>
                 <enumerationValue key="label">Label</enumerationValue>
-                </enumerationValues>
-        </property>
-        <property key="onClickEvent" type="enumeration" defaultValue="doNothing">
-            <caption>On click</caption>
-            <category>Events</category>
-            <description/>
-            <enumerationValues>
-                <enumerationValue key="doNothing">Do nothing</enumerationValue>
-                <enumerationValue key="showPage">Show a page</enumerationValue>
-                <enumerationValue key="callMicroflow">Call a microflow</enumerationValue>
-                <enumerationValue key="callNanoflow">Call a nanoflow</enumerationValue>
             </enumerationValues>
         </property>
-        <property key="page" type="form" required="false">
-            <caption>Page</caption>
+        <property key="onClickAction" type="action" required="false">
+            <caption>On click action</caption>
             <category>Events</category>
-            <description>The page that will be opened on click</description>
-        </property>
-        <property key="openPageAs" type="enumeration" defaultValue="content">
-            <caption>Open page as</caption>
-            <category>Events</category>
-            <description/>
-            <enumerationValues>
-                <enumerationValue key="content">Full page</enumerationValue>
-                <enumerationValue key="popup">Popup</enumerationValue>
-                <enumerationValue key="modal">Blocking popup</enumerationValue>
-            </enumerationValues>
-        </property>
-        <property key="microflow" type="microflow" required="false">
-            <caption>Microflow</caption>
-            <category>Events</category>
-            <description>The microflow that will be executed on click</description>
-            <returnType type="Void" />
-        </property>
-        <property key="nanoflow" type="nanoflow" required="false">
-            <caption>Nanoflow</caption>
-            <category>Events</category>
-            <description>The nanoflow that will be executed on click</description>
-            <returnType type="Void" />
+            <description>Action to trigger when button / label is clicked</description>
         </property>
     </properties>
 </widget>
