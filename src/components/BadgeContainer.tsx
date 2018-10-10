@@ -1,6 +1,7 @@
 import { Badge, BootstrapStyle } from "./Badge";
 import { Alert } from "./Alert";
 import * as React from "react";
+import { hot } from "react-hot-loader";
 
 interface WrapperProps {
     "class"?: string;
@@ -34,7 +35,7 @@ interface Nanoflow {
 type OnClickOptions = "doNothing" | "showPage" | "callMicroflow" | "callNanoflow";
 type PageLocation = "content"| "popup" | "modal";
 
-export default class BadgeContainer extends React.Component<BadgeContainerProps, BadgeContainerState> {
+class BadgeContainer extends React.Component<BadgeContainerProps, BadgeContainerState> {
     private subscriptionHandles: number[];
 
     constructor(props: BadgeContainerProps) {
@@ -179,3 +180,5 @@ export default class BadgeContainer extends React.Component<BadgeContainerProps,
         return {};
     }
 }
+
+export default hot(module)(BadgeContainer);

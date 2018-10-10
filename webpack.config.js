@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 const package = require("./package");
 const widgetName = package.widgetName;
@@ -16,7 +17,7 @@ const widgetConfig = {
     devServer: {
         port: 3000,
         proxy: [ {
-            context: [ "**", "!/widgets/com/mendix/widget/custom/badge/Badge.js" ],
+            context: [ "**", `!/widgets/com/mendix/widget/custom/${name}/${widgetName}.js` ],
             target: "http://localhost:8080"
         } ]
     },
@@ -28,7 +29,29 @@ const widgetConfig = {
     },
     module: {
         rules: [
-            { test: /\.tsx$/, use: "ts-loader" },
+            {
+                test: /\.(j|t)sx?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        cacheDirectory: true,
+                        babelrc: false,
+                        presets: [
+                            [
+                                "@babel/preset-env",
+                                { targets: { browsers: "last 2 versions" } } // or whatever your project requires
+                            ],
+                            "@babel/preset-typescript",
+                            "@babel/preset-react"
+                        ],
+                        plugins: [
+                            [ "@babel/plugin-proposal-class-properties", { loose: true } ],
+                            "react-hot-loader/babel"
+                        ]
+                    }
+                }
+            },
             { test: /\.(css|scss)$/, use: [
                 "style-loader", "css-loader", "sass-loader"
             ] }
@@ -38,6 +61,7 @@ const widgetConfig = {
     mode: "development",
     externals: [ "react", "react-dom" ],
     plugins: [
+        new ForkTsCheckerWebpackPlugin(),
         new CopyWebpackPlugin(
             [ {
                 from: "src/**/*.xml",
